@@ -32,6 +32,13 @@ trait CanRun {
     public abstract function run() :void;
 }
 
+trait All {
+    use sayGoodbye, sayHello, HasName, CanRun {
+        // hello as private;
+        // goodBye as private;
+    }
+}
+
 class ParentPerson {
     public function goodBye(?string $name) :void
     {
@@ -46,11 +53,8 @@ class ParentPerson {
 
 class Person extends ParentPerson
 {
-    use sayGoodbye, sayHello, HasName, CanRun {
-        // hello as private;
-        // goodBye as private;
-    }
-
+    use All;
+    
     public function run() :void {
         echo "Person $this->name is running ";
     }
